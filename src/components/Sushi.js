@@ -1,15 +1,17 @@
 import React, {useState} from "react";
 
-function Sushi({ sushi, onEmpty, money, setMoney }) {
+function Sushi({ sushi, money, setMoney }) {
   const [isEmpty, setIsEmpty] = useState(false);
+  
   function handleEatSushi(event) {
-    onEmpty(event.target.alt)
+    
     if (sushi.price > money) {
       alert ("You don't have enough money.")
     } else {
       setMoney(()=> money-sushi.price)
       setIsEmpty(!isEmpty)
     }
+    
   
   }
   return (

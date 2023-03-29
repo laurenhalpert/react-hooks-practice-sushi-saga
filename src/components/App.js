@@ -22,14 +22,17 @@ function App() {
   useEffect(()=> {
     fetch(API)
     .then(r=>r.json())
-    .then(sushiItems => setSushi(sushiItems.slice(((count*4)-4),(count*4)))
+    .then(sushiItems => {
+      if ((count*4)>sushiItems.length) {
+        setCount(1)
+      }
+      setSushi(sushiItems.slice(((count*4)-4),(count*4)))
+    }
   )});
-  function handleEmptyPlate (name) {
-    console.log(name)
-  }
+  
   return (
     <div className="app">
-      <SushiContainer money={money} setMoney={setMoney} onEmpty={handleEmptyPlate} sushi={sushi} count={count} setCount={setCount}/>
+      <SushiContainer money={money} setMoney={setMoney} sushi={sushi} count={count} setCount={setCount}/>
       <Table money={money} setMoney={setMoney}/>
     </div>
   );
